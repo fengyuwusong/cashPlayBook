@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.niriqiang.cashPlayBook.dao.CostMapper">
+    <resultMap id="BaseResultMap" type="cn.niriqiang.cashPlayBook.model.Cost">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="money" jdbcType="DOUBLE" property="money"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="baoxiao" jdbcType="INTEGER" property="baoxiao"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+        <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+    </resultMap>
+    <select id="findListByDay" resultType="cn.niriqiang.cashPlayBook.model.Cost">
+        SELECT *
+        FROM cost
+        WHERE open_id = #{openid} AND create_time >= #{start} AND create_time &lt;= #{end}
+        ORDER BY create_time DESC
+    </select>
+    <select id="findListByType" resultType="cn.niriqiang.cashPlayBook.model.Cost">
+        SELECT *
+        FROM `cash&amp;planbook`.cost
+        WHERE open_id = #{openid} AND
+              type = #{type}
+        ORDER BY create_time DESC
+    </select>
+    <select id="findListByCondition" resultType="cn.niriqiang.cashPlayBook.model.Cost">
+        SELECT *
+        FROM `cash&amp;planbook`.cost
+        <where>
+            <if test="baoxiao!=null">
+                baoxiao=#{baoxiao}
+            </if>
+            <if test="type!=null">
+                and type=#{type}
+            </if>
+            <if test="start!=null">
+                and create_time &gt;= #{start}
+            </if>
+            <if test="end!=null">
+                and create_time &lt;= #{end}
+            </if>
+            <if test="gtMoney !=null">
+                and money &gt;= #{gtMoney}
+            </if>
+            <if test="ltMoney !=null">
+                and money &lt;= #{ltMoney}
+            </if>
+            and open_id = #{openid}
+            order by create_time desc
+        </where>
+    </select>
+    <select id="getSumByStartAndEnd" resultType="java.lang.Double">
+        SELECT sum(money)
+        FROM `cash&amp;planbook`.cost
+        WHERE create_time >= #{start}
+              AND create_time &lt;= #{end} and open_id=#{openid}
+    </select>
+
+</mapper>
