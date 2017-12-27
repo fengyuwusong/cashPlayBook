@@ -1,6 +1,6 @@
 package cn.niriqiang.cashPlayBook.service;
 
-import cn.niriqiang.cashPlayBook.Dto.ConditionDto;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.core.Service;
 import cn.niriqiang.cashPlayBook.model.Income;
 

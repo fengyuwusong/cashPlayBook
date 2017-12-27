@@ -1,6 +1,6 @@
 package cn.niriqiang.cashPlayBook.dao;
 
-import cn.niriqiang.cashPlayBook.Dto.ConditionDto;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.core.Mapper;
 import cn.niriqiang.cashPlayBook.model.Income;
 import org.apache.ibatis.annotations.Param;

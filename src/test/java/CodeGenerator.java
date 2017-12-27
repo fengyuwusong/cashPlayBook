@@ -40,7 +40,9 @@ public class CodeGenerator {
 //        genCode("cost");
 //        genCode("income");
 //        genCode("user");
-        genCode("type");
+        genCode("income_type");
+        genCode("cost_first_type");
+        genCode("cost_second_type");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 

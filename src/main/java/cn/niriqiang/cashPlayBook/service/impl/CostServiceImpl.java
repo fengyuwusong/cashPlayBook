@@ -43,8 +43,8 @@ public class CostServiceImpl extends AbstractService<Cost> implements CostServic
     }
 
     @Override
-    public List<Cost> findListByCondition(Long start, Long end, Integer type, Integer baoxiao, Integer gt, Integer lt, String openid) {
-        List<Cost> list=costMapper.findListByCondition(start, end, type, baoxiao, gt, lt, openid);
+    public List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gt, Integer lt, String openid) {
+        List<Cost> list=costMapper.findListByCondition(start, end, type, necessary, gt, lt, openid);
         if(list.size()==0){
             throw new ServiceException("查询数据为空！");
         }

@@ -36,14 +36,14 @@ public interface CostService extends Service<Cost> {
      * @param start   开始时间
      * @param end     结束时间
      * @param type    类型id
-     * @param baoxiao 是否报销
+     * @param necessary 是否必要
      * @param gtMoney 大于金额
      * @param ltMoney 小于金额
      * @param openid  微信用户openid
      *
      * @return
      */
-    List<Cost> findListByCondition(Long start, Long end, Integer type, Integer baoxiao, Integer gtMoney, Integer ltMoney, String openid);
+    List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gtMoney, Integer ltMoney, String openid);
 
     /**
      * 获取时间段内的总金额

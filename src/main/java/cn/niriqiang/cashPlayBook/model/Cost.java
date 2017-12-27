@@ -1,7 +1,9 @@
 package cn.niriqiang.cashPlayBook.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 public class Cost {
     @Id
@@ -13,6 +15,9 @@ public class Cost {
 
     private Double money;
 
+
+    private Integer type;
+
     @Override
     public String toString() {
         return "Cost{" +
@@ -20,18 +25,17 @@ public class Cost {
                 ", openId='" + openId + '\'' +
                 ", money=" + money +
                 ", type=" + type +
-                ", baoxiao=" + baoxiao +
+                ", necessary=" + necessary +
                 ", mark='" + mark + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }
 
-    private Integer type;
-
     /**
-     * 0->不可报销 1->可报销
+     * 0->不必要的 1->必要的
      */
-    private Integer baoxiao;
+    @Column(name = "necessary")
+    private Integer necessary;
 
     /**
      * 备注
@@ -100,19 +104,19 @@ public class Cost {
     /**
      * 获取0->不可报销 1->可报销
      *
-     * @return baoxiao - 0->不可报销 1->可报销
+     * @return necessary - 0->不可报销 1->可报销
      */
-    public Integer getBaoxiao() {
-        return baoxiao;
+    public Integer getNecessary() {
+        return necessary;
     }
 
     /**
      * 设置0->不可报销 1->可报销
      *
-     * @param baoxiao 0->不可报销 1->可报销
+     * @param necessary 0->不可报销 1->可报销
      */
-    public void setBaoxiao(Integer baoxiao) {
-        this.baoxiao = baoxiao;
+    public void setNecessary(Integer necessary) {
+        this.necessary = necessary;
     }
 
     /**

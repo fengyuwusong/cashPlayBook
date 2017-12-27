@@ -6,6 +6,7 @@ import cn.niriqiang.cashPlayBook.model.User;
 import cn.niriqiang.cashPlayBook.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 
@@ -18,24 +19,28 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @ApiOperation(value = "添加新用户")
     @PostMapping
     public Result add(@RequestBody User user) {
         userService.save(user);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiIgnore
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         userService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiIgnore
     @PutMapping
     public Result update(@RequestBody User user) {
         userService.update(user);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiOperation(value="用户详情")
     @GetMapping("/{id}")
     public Result detail(@PathVariable Integer id) {
         User user = userService.findById(id);

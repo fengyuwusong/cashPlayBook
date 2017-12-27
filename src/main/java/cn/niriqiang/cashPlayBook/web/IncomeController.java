@@ -1,6 +1,6 @@
 package cn.niriqiang.cashPlayBook.web;
 
-import cn.niriqiang.cashPlayBook.Dto.ConditionDto;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.core.Result;
 import cn.niriqiang.cashPlayBook.core.ResultGenerator;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
@@ -29,33 +29,38 @@ public class IncomeController {
     private IncomeService incomeService;
     private static final Logger LOGGER = LoggerFactory.getLogger(IncomeController.class);
 
+    @ApiOperation(value = "添加一笔收入")
     @PostMapping
     public Result add(@RequestBody Income income) {
         incomeService.save(income);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiOperation(value = "删除一笔收入")
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         incomeService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiOperation(value = "更新一笔收入")
     @PutMapping
     public Result update(@RequestBody Income income) {
         incomeService.update(income);
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiOperation(value = "查看收入详情")
     @GetMapping("/{id}")
     public Result detail(@PathVariable Integer id) {
         Income income = incomeService.findById(id);
         return ResultGenerator.genSuccessResult(income);
     }
 
+    @ApiOperation(value = "查看通过条件")
     @PostMapping("/findListByCondition")
     public Result fondListByCondition(
-            @Valid ConditionDto dto,
+            @Valid @RequestBody ConditionDto dto,
             BindingResult result,
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "0") Integer size) {
@@ -76,8 +81,8 @@ public class IncomeController {
     @GetMapping("/getSum")
     public Result getSum(@RequestParam("openid") String openid,
                          @RequestParam("start") long start,
-                         @RequestParam("end") long end){
-        double sum=incomeService.getSumByStartAndEnd(start, end, openid);
+                         @RequestParam("end") long end) {
+        double sum = incomeService.getSumByStartAndEnd(start, end, openid);
         return ResultGenerator.genSuccessResult(sum);
     }
 

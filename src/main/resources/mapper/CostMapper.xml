@@ -9,7 +9,7 @@
         <result column="open_id" jdbcType="VARCHAR" property="openId"/>
         <result column="money" jdbcType="DOUBLE" property="money"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
-        <result column="baoxiao" jdbcType="INTEGER" property="baoxiao"/>
+        <result column="necessary" jdbcType="INTEGER" property="necessary"/>
         <result column="mark" jdbcType="VARCHAR" property="mark"/>
         <result column="create_time" jdbcType="BIGINT" property="createTime"/>
     </resultMap>
@@ -30,8 +30,8 @@
         SELECT *
         FROM `cash&amp;planbook`.cost
         <where>
-            <if test="baoxiao!=null">
-                baoxiao=#{baoxiao}
+            <if test="necessary!=null">
+                necessary=#{necessary}
             </if>
             <if test="type!=null">
                 and type=#{type}

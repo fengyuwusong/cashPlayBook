@@ -23,7 +23,7 @@ public class CostServiceImplTest extends Tester {
             List<Cost> list = service.findListByDay(System.currentTimeMillis() / 1000, (int) System.currentTimeMillis() / 1000, "123");
             System.out.println(list);
         } catch (ServiceException e) {
-            Assert.assertEquals(e.getMessage(), "该用户当天账本为空！");
+            Assert.assertEquals(e.getMessage(), "查询数据为空！");
         }
         List<Cost> list = service.findListByDay(1510934400, (1510934400 + 24 * 60 * 60), "123");
         System.out.println(list.toString());
