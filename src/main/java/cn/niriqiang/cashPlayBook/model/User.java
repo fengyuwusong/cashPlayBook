@@ -35,7 +35,7 @@ public class User {
     private String avatarUrl;
 
     @Column(name = "create_time")
-    private long createTime;
+    private Long createTime;
 
     /**
      * @return id
@@ -171,14 +171,14 @@ public class User {
     /**
      * @return create_time
      */
-    public long getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
     /**
      * @param createTime
      */
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 }

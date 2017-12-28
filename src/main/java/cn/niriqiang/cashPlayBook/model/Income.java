@@ -34,7 +34,7 @@ public class Income{
     private String mark;
 
     @Column(name = "create_time")
-    private long createTime;
+    private Long createTime;
 
     /**
      * @return id
