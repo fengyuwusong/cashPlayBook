@@ -28,8 +28,8 @@ public class CostController {
     @ApiOperation(value = "添加一笔支出")
     @PostMapping
     public Result add(@RequestBody Cost cost) {
-        costService.save(cost);
-        return ResultGenerator.genSuccessResult();
+        int cid=costService.save(cost);
+        return ResultGenerator.genSuccessResult(cid);
     }
 
     @ApiOperation(value = "删除一笔支出")
@@ -57,7 +57,7 @@ public class CostController {
             @ApiImplicitParam(name = "start", dataType = "long", paramType = "form", value = "开始时间"),
             @ApiImplicitParam(name = "end", dataType = "long", paramType = "form", value = "结束时间"),
             @ApiImplicitParam(name = "type", dataType = "int", paramType = "form", value = "类型id"),
-            @ApiImplicitParam(name = "baoxiao", dataType = "int", paramType = "form", value = "是否必要(0->不必要 1->必要)"),
+            @ApiImplicitParam(name = "necessary", dataType = "int", paramType = "form", value = "是否必要(0->不必要 1->必要)"),
             @ApiImplicitParam(name = "gtMoney", dataType = "int", paramType = "form", value = "最小金额"),
             @ApiImplicitParam(name = "ltMoney", dataType = "int", paramType = "form", value = "最大金额"),
             @ApiImplicitParam(name = "openid", dataType = "String", paramType = "form", value = "微信用户openid", required = true),
