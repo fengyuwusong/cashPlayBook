@@ -20,8 +20,8 @@ public class IncomeTypeController {
 
     @PostMapping
     public Result add(@RequestBody IncomeType incomeType) {
-        int id=incomeTypeService.save(incomeType);
-        return ResultGenerator.genSuccessResult(id);
+        incomeTypeService.save(incomeType);
+        return ResultGenerator.genSuccessResult(incomeType.getId());
     }
 
     @DeleteMapping("/{id}")

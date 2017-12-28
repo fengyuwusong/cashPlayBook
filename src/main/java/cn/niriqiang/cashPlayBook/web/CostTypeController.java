@@ -35,8 +35,8 @@ public class CostTypeController {
 
     @PostMapping("/first")
     public Result add(@RequestBody CostFirstType costFirstType) {
-        int id=costFirstTypeService.save(costFirstType);
-        return ResultGenerator.genSuccessResult(id);
+        costFirstTypeService.save(costFirstType);
+        return ResultGenerator.genSuccessResult(costFirstType.getId());
     }
 
     @DeleteMapping("/first/{id}")
@@ -54,8 +54,8 @@ public class CostTypeController {
 
     @PostMapping("second")
     public Result add(@RequestBody CostSecondType costSecondType) {
-        int id=costSecondTypeService.save(costSecondType);
-        return ResultGenerator.genSuccessResult(id);
+        costSecondTypeService.save(costSecondType);
+        return ResultGenerator.genSuccessResult(costSecondType.getId());
     }
 
     @DeleteMapping("/second/{id}")

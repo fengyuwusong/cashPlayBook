@@ -22,8 +22,8 @@ public class UserController {
     @ApiOperation(value = "添加新用户")
     @PostMapping
     public Result add(@RequestBody User user) {
-        int uid=userService.save(user);
-        return ResultGenerator.genSuccessResult(uid);
+        userService.save(user);
+        return ResultGenerator.genSuccessResult(user.getId());
     }
 
     @ApiIgnore

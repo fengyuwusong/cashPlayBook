@@ -28,8 +28,8 @@ public class CostController {
     @ApiOperation(value = "添加一笔支出")
     @PostMapping
     public Result add(@RequestBody Cost cost) {
-        int cid=costService.save(cost);
-        return ResultGenerator.genSuccessResult(cid);
+        costService.save(cost);
+        return ResultGenerator.genSuccessResult(cost.getId());
     }
 
     @ApiOperation(value = "删除一笔支出")

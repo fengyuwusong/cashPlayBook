@@ -32,8 +32,8 @@ public class IncomeController {
     @ApiOperation(value = "添加一笔收入")
     @PostMapping
     public Result add(@RequestBody Income income) {
-        int id=incomeService.save(income);
-        return ResultGenerator.genSuccessResult(id);
+        incomeService.save(income);
+        return ResultGenerator.genSuccessResult(income.getId());
     }
 
     @ApiOperation(value = "删除一笔收入")
