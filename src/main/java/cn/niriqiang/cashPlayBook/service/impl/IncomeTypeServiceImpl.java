@@ -3,7 +3,6 @@ package cn.niriqiang.cashPlayBook.service.impl;
 import cn.niriqiang.cashPlayBook.core.AbstractService;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
 import cn.niriqiang.cashPlayBook.dao.IncomeTypeMapper;
-import cn.niriqiang.cashPlayBook.model.CostFirstType;
 import cn.niriqiang.cashPlayBook.model.IncomeType;
 import cn.niriqiang.cashPlayBook.service.IncomeTypeService;
 import org.springframework.stereotype.Service;

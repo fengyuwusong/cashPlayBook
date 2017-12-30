@@ -24,5 +24,7 @@ public class ConditionDto {
     private Integer ltMoney;
     @ApiModelProperty(value = "openid",dataType = "String",required = true)
     @NotNull
-    private String openid;
+    private int uid;
+    private Integer page=0;
+    private Integer size=0;
 }

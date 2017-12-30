@@ -1,10 +1,10 @@
 package cn.niriqiang.cashPlayBook.service.impl;
 
+import cn.niriqiang.cashPlayBook.core.AbstractService;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
 import cn.niriqiang.cashPlayBook.dao.CostFirstTypeMapper;
 import cn.niriqiang.cashPlayBook.model.CostFirstType;
 import cn.niriqiang.cashPlayBook.service.CostFirstTypeService;
-import cn.niriqiang.cashPlayBook.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

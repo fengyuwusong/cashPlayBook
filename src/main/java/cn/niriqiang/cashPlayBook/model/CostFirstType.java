@@ -12,6 +12,15 @@ public class CostFirstType {
 
     private Integer uid;
 
+    @Override
+    public String toString() {
+        return "CostFirstType{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", uid=" + uid +
+                '}';
+    }
+
     /**
      * @return id
      */

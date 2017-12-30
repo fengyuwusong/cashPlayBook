@@ -60,7 +60,7 @@ public class CostController {
             @ApiImplicitParam(name = "necessary", dataType = "int", paramType = "form", value = "是否必要(0->不必要 1->必要)"),
             @ApiImplicitParam(name = "gtMoney", dataType = "int", paramType = "form", value = "最小金额"),
             @ApiImplicitParam(name = "ltMoney", dataType = "int", paramType = "form", value = "最大金额"),
-            @ApiImplicitParam(name = "openid", dataType = "String", paramType = "form", value = "微信用户openid", required = true),
+            @ApiImplicitParam(name = "uid", dataType = "int", paramType = "form", value = "微信用户id", required = true),
             @ApiImplicitParam(name = "page", dataType = "int", paramType = "form", value = "页码"),
             @ApiImplicitParam(name = "size", dataType = "int", paramType = "form", value = "页显示数")
     })
@@ -71,20 +71,21 @@ public class CostController {
                                       @RequestParam(value = "necessary", required = false) Integer necessary,
                                       @RequestParam(value = "gtMoney", required = false) Integer gtMoney,
                                       @RequestParam(value = "ltMoney", required = false) Integer ltMoney,
-                                      @RequestParam(value = "openid") String openid,
+                                      @RequestParam(value = "uid") int uid,
                                       @RequestParam(defaultValue = "0") Integer page,
                                       @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<Cost> list = costService.findListByCondition(start, end, type, necessary, gtMoney, ltMoney, openid);
+        List<Cost> list = costService.findListByCondition(start, end, type, necessary, gtMoney, ltMoney, uid);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
+
     @ApiOperation(value = "获取时间段内的总金额")
     @GetMapping("/getSum")
-    public Result getSum(@RequestParam("openid") String openid,
+    public Result getSum(@RequestParam("uid") int uid,
                          @RequestParam("start") long start,
-                         @RequestParam("end") long end){
-        double sum=costService.getSumByStartAndEnd(start, end, openid);
+                         @RequestParam("end") long end) {
+        double sum = costService.getSumByStartAndEnd(start, end, uid);
         return ResultGenerator.genSuccessResult(sum);
     }
 

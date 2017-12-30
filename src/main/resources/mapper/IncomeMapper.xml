@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.niriqiang.cashPlayBook.dao.IncomeMapper">
-    <resultMap id="BaseResultMap" type="cn.niriqiang.cashPlayBook.model.Income">
+    <resultMap id="BaseResultMap" type="cn.niriqiang.cashPlayBook.dto.IncomeAndTypeDto">
         <!--
           WARNING - @mbg.generated
         -->
         <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="uid" jdbcType="VARCHAR" property="uid"/>
         <result column="money" jdbcType="DOUBLE" property="money"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="mark" jdbcType="VARCHAR" property="mark"/>
         <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <association property="incomeType" javaType="cn.niriqiang.cashPlayBook.model.IncomeType">
+            <result property="name" column="typeName"/>
+        </association>
     </resultMap>
-    <select id="findListByCondition" resultType="cn.niriqiang.cashPlayBook.model.Income">
-        SELECT * FROM `cash&amp;planbook`.income
+    <select id="findListByCondition" resultMap="cn.niriqiang.cashPlayBook.dao.IncomeMapper.BaseResultMap">
+        SELECT a.*, b.name typeName FROM `cash&amp;planbook`.income a,`cash&amp;planbook`.income_type b
         <where>
             <if test="start!=null">
                 create_time>=#{start}
@@ -30,13 +33,14 @@
             <if test="ltMoney!=null">
                 and money &lt;#{ltMoney}
             </if>
-            and open_id=#{openid} order by create_time desc
+            and a.uid=#{uid} and b.id=a.type
+            order by create_time desc
         </where>
     </select>
     <select id="getSumByStartAndEnd" resultType="java.lang.Double">
         SELECT sum(money)
         FROM `cash&amp;planbook`.income
         WHERE create_time >= #{start}
-              AND create_time &lt;= #{end} and open_id=#{openid}
+              AND create_time &lt;= #{end} and uid=#{uid}
     </select>
 </mapper>

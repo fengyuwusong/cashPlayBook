@@ -11,26 +11,6 @@ import java.util.List;
  */
 public interface CostService extends Service<Cost> {
     /**
-     * 查询该天支出类型占比
-     *
-     * @param start  日期
-     * @param openid 微信用户openid
-     *
-     * @return List<Cost> 用户消费集合
-     */
-    List<Cost> findListByDay(long start, long end, String openid);
-
-    /**
-     * 按照分类查询
-     *
-     * @param type   分类id
-     * @param openid 微信用户openid
-     *
-     * @return List<Cost> 用户消费集合
-     */
-    List<Cost> findListByType(int type, String openid);
-
-    /**
      * 按照所有条件进行查询 参数为 -1则不进行查询
      *
      * @param start   开始时间
@@ -39,19 +19,19 @@ public interface CostService extends Service<Cost> {
      * @param necessary 是否必要
      * @param gtMoney 大于金额
      * @param ltMoney 小于金额
-     * @param openid  微信用户openid
+     * @param uid  微信用户id
      *
      * @return
      */
-    List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gtMoney, Integer ltMoney, String openid);
+    List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gtMoney, Integer ltMoney, int uid);
 
     /**
      * 获取时间段内的总金额
      * @param satart
      * @param end
-     * @param openid
+     * @param uid
      * @return
      */
-    double getSumByStartAndEnd(long satart, long end, String openid);
+    double getSumByStartAndEnd(long satart, long end, int uid);
 
 }

@@ -2,7 +2,6 @@ package cn.niriqiang.cashPlayBook.service.impl;
 
 import cn.niriqiang.cashPlayBook.core.AbstractService;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
-import cn.niriqiang.cashPlayBook.dao.CostFirstTypeMapper;
 import cn.niriqiang.cashPlayBook.dao.CostSecondTypeMapper;
 import cn.niriqiang.cashPlayBook.dto.CostTypeDto;
 import cn.niriqiang.cashPlayBook.model.CostFirstType;

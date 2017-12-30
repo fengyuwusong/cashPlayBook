@@ -25,26 +25,8 @@ public class CostServiceImpl extends AbstractService<Cost> implements CostServic
     private CostMapper costMapper;
 
     @Override
-    public List<Cost> findListByDay(long start, long end, String openid) {
-        List<Cost> list = costMapper.findListByDay(start, end, openid);
-        if (list.size() == 0) {
-            throw new ServiceException("查询数据为空！");
-        }
-        return list;
-    }
-
-    @Override
-    public List<Cost> findListByType(int type, String openid) {
-        List<Cost> list = costMapper.findListByType(type, openid);
-        if (list.size() == 0) {
-            throw new ServiceException("查询数据为空！");
-        }
-        return list;
-    }
-
-    @Override
-    public List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gt, Integer lt, String openid) {
-        List<Cost> list=costMapper.findListByCondition(start, end, type, necessary, gt, lt, openid);
+    public List<Cost> findListByCondition(Long start, Long end, Integer type, Integer necessary, Integer gt, Integer lt, int uid) {
+        List<Cost> list=costMapper.findListByCondition(start, end, type, necessary, gt, lt, uid);
         if(list.size()==0){
             throw new ServiceException("查询数据为空！");
         }
@@ -52,8 +34,9 @@ public class CostServiceImpl extends AbstractService<Cost> implements CostServic
     }
 
     @Override
-    public double getSumByStartAndEnd(long satart, long end, String openid) {
-        return costMapper.getSumByStartAndEnd(satart, end, openid);
+    public double getSumByStartAndEnd(long satart, long end, int uid) {
+        Double sum=costMapper.getSumByStartAndEnd(satart, end, uid);
+        return sum==null?0:sum;
     }
 
 

@@ -1,11 +1,11 @@
 package cn.niriqiang.cashPlayBook.service.impl;
 
-import cn.niriqiang.cashPlayBook.dto.ConditionDto;
+import cn.niriqiang.cashPlayBook.core.AbstractService;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
 import cn.niriqiang.cashPlayBook.dao.IncomeMapper;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.model.Income;
 import cn.niriqiang.cashPlayBook.service.IncomeService;
-import cn.niriqiang.cashPlayBook.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +32,9 @@ public class IncomeServiceImpl extends AbstractService<Income> implements Income
     }
 
     @Override
-    public double getSumByStartAndEnd(long start, long end, String openid) {
-        return incomeMapper.getSumByStartAndEnd(start, end, openid);
+    public double getSumByStartAndEnd(long start, long end, int uid) {
+        Double sum=incomeMapper.getSumByStartAndEnd(start, end, uid);
+        return sum==null?0:sum;
     }
 
 

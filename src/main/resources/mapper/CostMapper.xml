@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.niriqiang.cashPlayBook.dao.CostMapper">
-    <resultMap id="BaseResultMap" type="cn.niriqiang.cashPlayBook.model.Cost">
+    <resultMap id="BaseResultMap" type="cn.niriqiang.cashPlayBook.dto.CostAndFirstSecondTypeDto">
         <!--
           WARNING - @mbg.generated
         -->
         <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="uid" jdbcType="INTEGER" property="uid"/>
         <result column="money" jdbcType="DOUBLE" property="money"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="necessary" jdbcType="INTEGER" property="necessary"/>
         <result column="mark" jdbcType="VARCHAR" property="mark"/>
         <result column="create_time" jdbcType="BIGINT" property="createTime"/>
+        <association property="firstType" javaType="cn.niriqiang.cashPlayBook.model.CostFirstType">
+            <id property="id" column="fid" jdbcType="INTEGER"/>
+            <result property="name" column="fname" jdbcType="VARCHAR"/>
+        </association>
+        <association property="secondType" javaType="cn.niriqiang.cashPlayBook.model.CostSecondType">
+            <id property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="fid" column="fid"/>
+        </association>
     </resultMap>
-    <select id="findListByDay" resultType="cn.niriqiang.cashPlayBook.model.Cost">
-        SELECT *
-        FROM cost
-        WHERE open_id = #{openid} AND create_time >= #{start} AND create_time &lt;= #{end}
-        ORDER BY create_time DESC
-    </select>
-    <select id="findListByType" resultType="cn.niriqiang.cashPlayBook.model.Cost">
-        SELECT *
-        FROM `cash&amp;planbook`.cost
-        WHERE open_id = #{openid} AND
-              type = #{type}
-        ORDER BY create_time DESC
-    </select>
-    <select id="findListByCondition" resultType="cn.niriqiang.cashPlayBook.model.Cost">
-        SELECT *
-        FROM `cash&amp;planbook`.cost
+
+
+    <select id="findListByCondition" resultMap="cn.niriqiang.cashPlayBook.dao.CostMapper.BaseResultMap">
+        SELECT a.*,b.id fid,b.name fname,c.id sid,c.name sname
+        FROM cost a,cost_first_type b,cost_second_type c
         <where>
             <if test="necessary!=null">
                 necessary=#{necessary}
@@ -48,7 +46,7 @@
             <if test="ltMoney !=null">
                 and money &lt;= #{ltMoney}
             </if>
-            and open_id = #{openid}
+            and a.uid = #{uid} and b.id=c.fid and c.id=a.type
             order by create_time desc
         </where>
     </select>
@@ -56,7 +54,7 @@
         SELECT sum(money)
         FROM `cash&amp;planbook`.cost
         WHERE create_time >= #{start}
-              AND create_time &lt;= #{end} and open_id=#{openid}
+              AND create_time &lt;= #{end} AND uid = #{uid}
     </select>
 
 </mapper>

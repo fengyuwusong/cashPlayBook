@@ -1,9 +1,9 @@
 package cn.niriqiang.cashPlayBook.web;
 
-import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.core.Result;
 import cn.niriqiang.cashPlayBook.core.ResultGenerator;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.model.Income;
 import cn.niriqiang.cashPlayBook.service.IncomeService;
 import com.github.pagehelper.PageHelper;
@@ -61,9 +61,7 @@ public class IncomeController {
     @PostMapping("/findListByCondition")
     public Result fondListByCondition(
             @Valid @RequestBody ConditionDto dto,
-            BindingResult result,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "0") Integer size) {
+            BindingResult result) {
         if (result.hasErrors()) {
             for (ObjectError or : result.getAllErrors()) {
                 LOGGER.warn("验证类型:" + or.getCode() + " \t错误消息:"
@@ -71,7 +69,7 @@ public class IncomeController {
             }
             throw new ServiceException("数据错误,请重试");
         }
-        PageHelper.startPage(page, size);
+        PageHelper.startPage(dto.getPage(), dto.getSize());
         List<Income> list = incomeService.findListByCondition(dto);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
@@ -79,10 +77,10 @@ public class IncomeController {
 
     @ApiOperation(value = "获取时间段内的总金额")
     @GetMapping("/getSum")
-    public Result getSum(@RequestParam("openid") String openid,
+    public Result getSum(@RequestParam("uid") int uid,
                          @RequestParam("start") long start,
                          @RequestParam("end") long end) {
-        double sum = incomeService.getSumByStartAndEnd(start, end, openid);
+        double sum = incomeService.getSumByStartAndEnd(start, end, uid);
         return ResultGenerator.genSuccessResult(sum);
     }
 

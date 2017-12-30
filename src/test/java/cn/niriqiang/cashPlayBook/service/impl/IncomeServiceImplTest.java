@@ -1,8 +1,8 @@
 package cn.niriqiang.cashPlayBook.service.impl;
 
-import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.Tester;
 import cn.niriqiang.cashPlayBook.core.ServiceException;
+import cn.niriqiang.cashPlayBook.dto.ConditionDto;
 import cn.niriqiang.cashPlayBook.model.Income;
 import cn.niriqiang.cashPlayBook.service.IncomeService;
 import org.junit.Test;
@@ -21,13 +21,11 @@ public class IncomeServiceImplTest extends Tester{
         Income income=new Income();
         income.setCreateTime(System.currentTimeMillis()/1000);
         income.setMoney(12D);
-        income.setOpenId("123");
+        income.setUid(25);
         income.setType(10);
         service.save(income);
         ConditionDto dto=new ConditionDto();
-        dto.setOpenid("123");
-        dto.setGtMoney(10);
-        dto.setLtMoney(20);
+        dto.setUid(25);
         List<Income> list=service.findListByCondition(dto);
         System.out.println(list);
 
@@ -43,9 +41,9 @@ public class IncomeServiceImplTest extends Tester{
     @Test
     public void getSum(){
         long start=1;
-        long end=System.currentTimeMillis();
-        String openid="123";
-        System.out.println(service.getSumByStartAndEnd(start, end, openid));
+        long end=System.currentTimeMillis()/1000;
+        int uid=25;
+        System.out.println(service.getSumByStartAndEnd(start, end, uid));
     }
 
 }

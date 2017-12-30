@@ -1,9 +1,9 @@
 package cn.niriqiang.cashPlayBook.service.impl;
 
+import cn.niriqiang.cashPlayBook.core.AbstractService;
 import cn.niriqiang.cashPlayBook.dao.UserMapper;
 import cn.niriqiang.cashPlayBook.model.User;
 import cn.niriqiang.cashPlayBook.service.UserService;
-import cn.niriqiang.cashPlayBook.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

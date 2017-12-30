@@ -10,19 +10,19 @@ public class Cost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "open_id")
-    private String openId;
+    private int uid;
 
     private Double money;
 
 
     private Integer type;
 
+
     @Override
     public String toString() {
         return "Cost{" +
                 "id=" + id +
-                ", openId='" + openId + '\'' +
+                ", uid='" + uid + '\'' +
                 ", money=" + money +
                 ", type=" + type +
                 ", necessary=" + necessary +
@@ -60,17 +60,17 @@ public class Cost {
     }
 
     /**
-     * @return open_id
+     * @return uid
      */
-    public String getOpenId() {
-        return openId;
+    public int getUid() {
+        return uid;
     }
 
     /**
-     * @param openId
+     * @param uid
      */
-    public void setOpenId(String openId) {
-        this.openId = openId;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     /**
@@ -140,14 +140,14 @@ public class Cost {
     /**
      * @return create_time
      */
-    public long getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
     /**
      * @param createTime
      */
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 }

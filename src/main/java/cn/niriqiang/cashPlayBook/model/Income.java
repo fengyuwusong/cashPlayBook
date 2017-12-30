@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 
 public class Income{
@@ -12,8 +11,7 @@ public class Income{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "open_id")
-    private String openId;
+    private int uid;
 
     private Double money;
 
@@ -23,7 +21,7 @@ public class Income{
     public String toString() {
         return "Income{" +
                 "id=" + id +
-                ", openId='" + openId + '\'' +
+                ", uid='" + uid + '\'' +
                 ", money=" + money +
                 ", type=" + type +
                 ", mark='" + mark + '\'' +
@@ -51,17 +49,17 @@ public class Income{
     }
 
     /**
-     * @return open_id
+     * @return uid
      */
-    public String getOpenId() {
-        return openId;
+    public int getUid() {
+        return uid;
     }
 
     /**
-     * @param openId
+     * @param uid
      */
-    public void setOpenId(String openId) {
-        this.openId = openId;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     /**
