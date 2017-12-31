@@ -25,7 +25,7 @@ public class IncomeServiceImplTest extends Tester{
         income.setType(10);
         service.save(income);
         ConditionDto dto=new ConditionDto();
-        dto.setUid(25);
+        dto.setUid(4);
         List<Income> list=service.findListByCondition(dto);
         System.out.println(list);
 
@@ -42,7 +42,7 @@ public class IncomeServiceImplTest extends Tester{
     public void getSum(){
         long start=1;
         long end=System.currentTimeMillis()/1000;
-        int uid=25;
+        int uid=4;
         System.out.println(service.getSumByStartAndEnd(start, end, uid));
     }
 

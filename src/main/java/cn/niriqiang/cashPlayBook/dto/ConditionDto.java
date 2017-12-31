@@ -27,4 +27,18 @@ public class ConditionDto {
     private int uid;
     private Integer page=0;
     private Integer size=0;
+
+    public ConditionDto() {
+    }
+
+    public ConditionDto(Long start, Long end, Integer type, Integer gtMoney, Integer ltMoney, int uid, Integer page, Integer size) {
+        this.start = start;
+        this.end = end;
+        this.type = type;
+        this.gtMoney = gtMoney;
+        this.ltMoney = ltMoney;
+        this.uid = uid;
+        this.page = page;
+        this.size = size;
+    }
 }

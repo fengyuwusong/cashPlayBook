@@ -12,6 +12,14 @@ public class CostFirstType {
 
     private Integer uid;
 
+    public CostFirstType(String name, Integer uid) {
+        this.name = name;
+        this.uid = uid;
+    }
+
+    public CostFirstType() {
+    }
+
     @Override
     public String toString() {
         return "CostFirstType{" +

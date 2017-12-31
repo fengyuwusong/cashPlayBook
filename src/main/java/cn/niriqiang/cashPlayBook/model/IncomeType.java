@@ -12,6 +12,14 @@ public class IncomeType {
 
     private Integer uid;
 
+    public IncomeType(String name, Integer uid) {
+        this.name = name;
+        this.uid = uid;
+    }
+
+    public IncomeType() {
+    }
+
     @Override
     public String toString() {
         return "IncomeType{" +

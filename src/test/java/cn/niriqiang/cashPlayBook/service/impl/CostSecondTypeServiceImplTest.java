@@ -14,12 +14,12 @@ public class CostSecondTypeServiceImplTest extends Tester{
 
     @Test
     public void findListByUid() throws Exception {
-        System.out.println(service.findListByUid(1));
+        System.out.println(service.findListByUid(4));
     }
 
     @Test
     public void findAll() throws Exception {
-        System.out.println(service.findAllByUid(1));
+        System.out.println(service.findAllByUid(4));
     }
 
 }

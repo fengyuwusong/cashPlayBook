@@ -18,7 +18,7 @@ public class CostServiceImplTest extends Tester {
 
     @Test
     public void findListByAll() {
-        List<Cost> list = service.findListByCondition(null, null, null, null, null, null, 25);
+        List<Cost> list = service.findListByCondition(null, null, null, null, null, null, 4);
         System.out.println(list.toString());
 
         long start = System.currentTimeMillis() / 1000;
@@ -36,6 +36,6 @@ public class CostServiceImplTest extends Tester {
         String openid = "123";
         long start = 1;
         long end = System.currentTimeMillis();
-        System.out.println(service.getSumByStartAndEnd(start, end, 25));
+        System.out.println(service.getSumByStartAndEnd(start, end, 4));
     }
 }

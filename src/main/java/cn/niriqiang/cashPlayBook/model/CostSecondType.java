@@ -14,6 +14,15 @@ public class CostSecondType {
 
     private Integer uid;
 
+    public CostSecondType(String name, Integer fid, Integer uid) {
+        this.name = name;
+        this.fid = fid;
+        this.uid = uid;
+    }
+
+    public CostSecondType() {
+    }
+
     @Override
     public String toString() {
         return "CostSecondType{" +
